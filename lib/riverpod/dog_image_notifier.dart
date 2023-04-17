@@ -12,7 +12,7 @@ class DogImageNotifier extends StateNotifier<DogImageModel> {
     if (response.statusCode == 200) {
       final jsonResponse = jsonDecode(response.body);
       final String imageUrl = jsonResponse['message'];
-      state = DogImageModel(dogImage: imageUrl); // aquí se actualiza el estado
+      state = DogImageModel(dogImage: imageUrl); // AQUÍ se actualiza el estado
     } else {
       throw Exception('Error fetching dog image: ${response.statusCode}');
     }

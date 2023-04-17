@@ -10,11 +10,8 @@ class RandomDogsMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // para que aparezca la imagen de un perro aleatorio al iniciar la app
-    context.read(dogImageProvider.notifier).fetchDogImage();
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Software Práctica Riverpod')),
+      appBar: AppBar(title: const Text('Software Control Riverpod')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,11 +19,16 @@ class RandomDogsMainPage extends StatelessWidget {
             Consumer(
               builder: (context, watch, _) {
                 final state = watch(dogImageProvider) as DogImageModel;
-                return Image.network(
-                  state.dogImage,
-                  width: 300,
-                  height: 300,
-                );
+                if (state.dogImage.isEmpty) {
+                  // esto suprime el error de que no se puede mostrar la imagen en primera instancia
+                  return const Text('No Image Loaded Yet');
+                } else {
+                  return Image.network(
+                    state.dogImage,
+                    width: 400,
+                    height: 400,
+                  );
+                }
               },
             ),
             const SizedBox(height: 20),
