@@ -1,4 +1,4 @@
-# software_practica_riverpod
+# software_control_riverpod
 
 A new Flutter project.
 
